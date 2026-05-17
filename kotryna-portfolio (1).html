@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kotryna Saprunova — Experimental Marketing & Product</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FFF8F0;
+    --warm-white: #FFFDF9;
+    --dusk-rose: #E8A87C;
+    --sunset-orange: #D4644A;
+    --deep-coral: #B84C38;
+    --golden: #F2C46D;
+    --twilight-purple: #6B4E7D;
+    --deep-navy: #1C1830;
+    --smoke: #7A6E68;
+    --text-main: #2A1F1A;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background: var(--warm-white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(255,253,249,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(180,100,60,0.1);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--sunset-orange);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    transition: color 0.25s;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover { color: var(--sunset-orange); }
+
+  /* ── HERO / SUNSET ── */
+  #home {
+    min-height: 100vh;
+    background: linear-gradient(175deg, #FDEAC0 0%, #E8A87C 40%, #D4644A 75%, #B84C38 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+  }
+
+  .headshot-ring {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0 auto 2.5rem;
+    border: 3px solid rgba(255,248,240,0.5);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .headshot-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255,248,240,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .headshot-placeholder img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;
+  }
+
+  .headshot-placeholder .upload-hint {
+    color: rgba(255,248,240,0.6);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+  }
+
+  .headshot-placeholder .upload-icon {
+    font-size: 1.6rem;
+    color: rgba(255,248,240,0.45);
+  }
+
+  .headshot-placeholder input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700;
+    color: #FFF8F0;
+    line-height: 1.08;
+    margin-bottom: 0.8rem;
+    animation: fadeUp 0.9s ease 0.2s both;
+  }
+
+  .hero-title {
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,248,240,0.65);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    animation: fadeUp 0.9s ease 0.45s both;
+  }
+
+  .hero-scroll {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,248,240,0.4);
+    animation: fadeUp 0.9s ease 0.7s both;
+  }
+
+  .scroll-line {
+    width: 32px;
+    height: 1px;
+    background: rgba(255,248,240,0.3);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding: 7rem 4rem; }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sunset-orange);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--sunset-orange), var(--golden));
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--warm-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--smoke);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: var(--cream);
+    border: 1px solid rgba(180,100,60,0.12);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--sunset-orange);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    font-weight: 500;
+  }
+
+  /* ── RESUME ── */
+  #resume {
+    background: var(--cream);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .resume-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .resume-section-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sunset-orange);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(180,100,60,0.15);
+    padding-bottom: 0.5rem;
+  }
+
+  .resume-item {
+    margin-bottom: 2rem;
+  }
+
+  .resume-role {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+  }
+
+  .resume-place {
+    font-size: 0.85rem;
+    color: var(--sunset-orange);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  .resume-date {
+    font-size: 0.78rem;
+    color: var(--smoke);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.6rem;
+  }
+
+  .resume-desc {
+    font-size: 0.9rem;
+    color: var(--smoke);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    background: rgba(212,100,74,0.1);
+    color: var(--deep-coral);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── PORTFOLIO ── */
+  #portfolio {
+    background: var(--warm-white);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .portfolio-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--cream);
+    border: 1px solid rgba(180,100,60,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(180,100,60,0.15);
+  }
+
+  .portfolio-card:first-child {
+    grid-column: span 2;
+  }
+
+  .card-visual {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.04em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.08);
+  }
+
+  .card-v1 { background: linear-gradient(135deg, #7B3F6E 0%, #D4644A 50%, #F2C46D 100%); }
+  .card-v2 { background: linear-gradient(135deg, #1C1830 0%, #7B3F6E 70%, #C05070 100%); }
+  .card-v3 { background: linear-gradient(135deg, #D4644A 0%, #E8A87C 60%, #FDEAC0 100%); }
+  .card-v4 { background: linear-gradient(135deg, #3D2A5C 0%, #C05070 100%); }
+
+  .card-v1 .card-label { color: rgba(255,255,255,0.7); }
+
+  .card-body {
+    padding: 1.3rem 1.5rem 1.5rem;
+  }
+
+  .card-cat {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sunset-orange);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    color: var(--smoke);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--deep-navy);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contact::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(212,100,74,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  #contact .section-label { color: var(--dusk-rose); }
+  #contact .section-title { color: #FFF8F0; }
+  #contact .divider { margin-left: auto; margin-right: auto; }
+
+  .contact-tagline {
+    font-size: 1.05rem;
+    color: rgba(255,248,240,0.55);
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.8;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    border-radius: 60px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    font-family: var(--font-body);
+  }
+
+  .btn-primary {
+    background: var(--sunset-orange);
+    color: #FFF8F0;
+    border: 2px solid var(--sunset-orange);
+  }
+
+  .btn-primary:hover {
+    background: var(--deep-coral);
+    border-color: var(--deep-coral);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,248,240,0.7);
+    border: 1px solid rgba(255,248,240,0.2);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--dusk-rose);
+    color: var(--dusk-rose);
+    transform: translateY(-2px);
+  }
+
+  .contact-footer {
+    font-size: 0.78rem;
+    color: rgba(255,248,240,0.25);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .contact-form {
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    text-align: left;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,248,240,0.45);
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: rgba(255,248,240,0.05);
+    border: 1px solid rgba(255,248,240,0.12);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    color: rgba(255,248,240,0.85);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: rgba(212,100,74,0.5);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(255,248,240,0.22);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    section { padding: 5rem 2rem; }
+    #about { grid-template-columns: 1fr; gap: 3rem; }
+    .resume-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .portfolio-card:first-child { grid-column: span 2; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-card:first-child { grid-column: span 1; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">K.S.</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HOME / HERO -->
+<section id="home">
+  <div class="hero-content">
+    <div class="headshot-ring">
+      <div class="headshot-placeholder" id="headshot-zone" title="Click to upload your photo">
+        <img id="headshot-img" alt="Kotryna Saprunova">
+        <div class="upload-icon" id="upload-icon">+</div>
+        <div class="upload-hint" id="upload-hint">Add photo</div>
+        <input type="file" accept="image/*" onchange="loadHeadshot(event)">
+      </div>
+    </div>
+
+    <h1 class="hero-name">Kotryna<br>Saprunova</h1>
+    <p class="hero-title">Experimental Marketing &nbsp;·&nbsp; Product Specialist</p>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      scroll to explore
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Where brand storytelling meets real results</h2>
+    <div class="divider"></div>
+    <p>Experiential marketing professional with 4+ years of brand representation, consumer engagement, and sales execution across high-profile national clients including Apple, Google, and American Express.</p>
+    <p>Skilled in driving trial and awareness through live activations — trade shows, pop-ups, and tours — while translating consumer feedback into actionable strategy. Strong cross-functional collaborator across marketing, sales, and retail operations.</p>
+    <p>Based in Chicago, IL. Fluent in English and Lithuanian.</p>
+  </div>
+  <div class="about-stats">
+    <div class="stat-card">
+      <div class="stat-number">4+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Activations / Week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Sales Per Demo</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">Major Brand Clients</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" style="padding: 7rem 4rem;">
+  <p class="section-label">Resume</p>
+  <h2 class="section-title">Experience & Skills</h2>
+  <div class="divider"></div>
+  <div class="resume-grid">
+    <div>
+      <div class="resume-section-title">Work Experience</div>
+
+      <div class="resume-item">
+        <div class="resume-role">Product Specialist — Independent Contractor</div>
+        <div class="resume-place">Various Experiential Marketing Agencies · Chicago, IL</div>
+        <div class="resume-date">December 2021 — Present</div>
+        <div class="resume-desc">Execute 5+ experiential marketing activations weekly — trade shows, pop-ups, festivals, and tours. Represent nationally recognized brands including Apple, Google, T-Mobile, AT&T, Uber, American Express, and TurboTax. Engage thousands of consumers through product education and brand storytelling, driving trial and awareness while collecting feedback to inform marketing strategy.</div>
+      </div>
+
+      <div class="resume-item">
+        <div class="resume-role">Brand Representative</div>
+        <div class="resume-place">LaCroix Sparkling Water · Chicago, IL</div>
+        <div class="resume-date">April 2024 — Present</div>
+        <div class="resume-desc">Drive 50+ sales per in-store demo by engaging customers and supporting retail sales performance. Track sales metrics and collect customer feedback to support account insights and inform product improvements.</div>
+      </div>
+
+      <div class="resume-item">
+        <div class="resume-role">Product Specialist — La Colombe Coffee</div>
+        <div class="resume-place">High Profile Lifestyle & Promobile Marketing · Chicago, IL</div>
+        <div class="resume-date">April 2024 — January 2026</div>
+        <div class="resume-desc">Promoted La Colombe Coffee at experiential activations, distributing thousands of samples and educating consumers on products and brand. Mentored new team members and captured activation metrics to optimize program execution.</div>
+      </div>
+
+      <div class="resume-item">
+        <div class="resume-role">Samsung Product Lead Specialist</div>
+        <div class="resume-place">Best Buy · Orland Park, IL</div>
+        <div class="resume-date">August 2022 — December 2024</div>
+        <div class="resume-desc">Consistently met or exceeded weekly sales targets of $10,000 through expert-level product knowledge and tailored client consultations. Tracked customer interactions to identify upselling opportunities and enhance satisfaction.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="resume-section-title">Education</div>
+      <div class="resume-item">
+        <div class="resume-role">Bachelor of Applied Science in Business Administration</div>
+        <div class="resume-place">University of Illinois Chicago</div>
+        <div class="resume-date">August 2025</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-role">Associate of Applied Science in Business Administration</div>
+        <div class="resume-place">Moraine Valley Community College · Palos Hills, IL</div>
+        <div class="resume-date">May 2023</div>
+      </div>
+
+      <div class="resume-section-title" style="margin-top: 2rem;">Core Competencies</div>
+      <div class="skill-tags">
+        <span class="tag">Brand Representation</span>
+        <span class="tag">Go-to-Market Activations</span>
+        <span class="tag">Consumer Education</span>
+        <span class="tag">Product Launches</span>
+        <span class="tag">Consumer Insights</span>
+        <span class="tag">Activation Metrics</span>
+        <span class="tag">Sales Tracking</span>
+        <span class="tag">Experiential Events</span>
+        <span class="tag">Cross-functional Collaboration</span>
+        <span class="tag">Microsoft Office</span>
+        <span class="tag">Google Workspace</span>
+        <span class="tag">CRM Tools</span>
+        <span class="tag">English & Lithuanian</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" style="padding: 7rem 4rem;">
+  <div class="portfolio-header">
+    <div>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Selected Work</h2>
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-card">
+      <div class="card-visual card-v1">
+        <span style="position:relative;z-index:1;color:rgba(255,255,255,0.85);font-family:'Playfair Display',serif;font-style:italic;">Campaign Identity</span>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Experimental Campaign</div>
+        <div class="card-title">Project Title One — Replace Me</div>
+        <div class="card-desc">A brief description of what this project was about, what problem you solved, and the impact it created. Keep it punchy and results-driven.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="card-visual card-v2">
+        <span style="position:relative;z-index:1;color:rgba(255,255,255,0.7);font-family:'Playfair Display',serif;font-style:italic;">Product Launch</span>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Go-to-Market</div>
+        <div class="card-title">Project Title Two</div>
+        <div class="card-desc">Describe the launch, your role, and the measurable outcome you achieved for this product or brand.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="card-visual card-v3">
+        <span style="position:relative;z-index:1;color:rgba(255,255,255,0.8);font-family:'Playfair Display',serif;font-style:italic;">Brand World</span>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Brand Strategy</div>
+        <div class="card-title">Project Title Three</div>
+        <div class="card-desc">Share the story behind this brand work — the brief, your creative approach, and the result.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-card">
+      <div class="card-visual card-v4">
+        <span style="position:relative;z-index:1;color:rgba(255,255,255,0.75);font-family:'Playfair Display',serif;font-style:italic;">Community</span>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Community & Experiential</div>
+        <div class="card-title">Project Title Four</div>
+        <div class="card-desc">Outline the event, activation, or community programme — its goals and the audience it reached.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Contact Me</p>
+  <h2 class="section-title">Let's make something extraordinary</h2>
+  <div class="divider"></div>
+  <p class="contact-tagline">Have a project in mind, an idea worth exploring, or just want to connect? I'd love to hear from you.</p>
+
+  <div class="contact-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea rows="5" placeholder="Tell me about your project or idea..."></textarea>
+    </div>
+  </div>
+
+  <div class="contact-links">
+    <a href="mailto:Kotrynasap1@gmail.com" class="contact-btn btn-primary">Send a Message</a>
+    <a href="https://linkedin.com/in/kotrynasaprunova" target="_blank" class="contact-btn btn-outline">LinkedIn</a>
+    <a href="#" class="contact-btn btn-outline">Download CV</a>
+  </div>
+
+  <div class="contact-footer">© 2026 Kotryna Saprunova &nbsp;·&nbsp; All rights reserved</div>
+</section>
+
+<script>
+function loadHeadshot(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = document.getElementById('headshot-img');
+    const icon = document.getElementById('upload-icon');
+    const hint = document.getElementById('upload-hint');
+    img.src = e.target.result;
+    img.style.display = 'block';
+    icon.style.display = 'none';
+    hint.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+// Smooth active nav highlighting
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--sunset-orange)' : '';
+  });
+});
+</script>
+</body>
+</html>
